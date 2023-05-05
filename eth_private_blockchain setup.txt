@@ -1,0 +1,46 @@
+https://medium.com/@hyoungsungkim/build-private-ethereum-network-and-test-step-by-step-ff50a2c88eca
+
+Step-1 Download geth and install
+Step-2 create directory in any drive as "eth_private_blockchain"
+Step-3 create genesis.json file inside eth_private_blockchain directory  
+cd eth_private_blockchain
+
+->genesis.json
+
+{
+    "config":{
+        "chainId":1114,
+        "homesteadBlock":0,
+        "eip150Block":0,
+        "eip155Block":0,
+        "eip158Block":0,
+        "byzantiumBlock":0,
+        "ConstantinopleBlock":0,
+        "PetersburgBlock":0
+    },
+    "difficulty":"0x20000",
+    "gasLimit":"0x9000000",
+    "alloc":{}
+}
+
+Step-4 Open terminal to create genesis block
+>cd eth_private_blockchain
+>geth init --datadir  eth_private_blockchain  genesis.json
+
+Step-5 Type below cmd in opened terminal To create new block in our blockchain
+>geth --datadir eth_private_blockchain  --nodiscover
+
+Step-6 Open another terminal goto directory
+>cd eth_private_blockchain
+>geth attach ipc://./pipe/geth.ipc
+>eth.accounts
+>personal.newAccount()
+---enter passphrase
+---show account address copy it
+>eth.getBalance("account address")
+
+Step-7 Attaching current account to miner
+>miner.setEtherbase(eth.accounts[0])
+>eth.getBalance("accountaddress")
+>miner.start(1)
+
