@@ -35,8 +35,15 @@ Step-6 Open another terminal goto directory
 >geth attach ipc://./pipe/geth.ipc
 >eth.accounts
 >personal.newAccount()
----enter passphrase
+
+--------------------If personal.newAccount() gives error then use below commands.
+
+create sub folder inside eth_private_blockchain
+>mkdir eth_private_blockchain
+>clef newaccount --keystore  eth_private_blockchain/keystore
+---enter strong password
 ---show account address copy it
+>eth.accounts
 >eth.getBalance("account address")
 
 Step-7 Attaching current account to miner
